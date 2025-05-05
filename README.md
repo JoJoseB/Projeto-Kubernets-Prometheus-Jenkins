@@ -1,11 +1,11 @@
 # PROJETO ESIG
 
-Este repositório é destinado a avaliação técnica para vaga de Analista de Infraestrutura na empresa ESIG Software e Quark Tecnologia, fique a vontade para clonar o repositório e contribuir para ele.
-
+Este repositório foi criado para a avaliação técnica do processo seletivo da vaga de Analista de Infraestrutura na **ESIG Software** e **Quark Tecnologia**. Sinta-se à vontade para cloná-lo e, se desejar, contribuir com melhorias.
 ```bash
 git clone https://github.com/JoJoseB/projeto-esig.git
 cd projeto-esig
 ```
+
 ---
 ## Objetivos
 1. Criar um contêiner para uma aplicação simples e expor as métricas via 
@@ -16,7 +16,7 @@ Exporter.
 
 ---
 ## Pré-requisitos
-Esse projeto fez uso das seguintes ferramentas para execução da infraestrutura solicitada no projeto, vale ressaltar também que o projeto foi desenvolvido na plataforma WSL fazendo uso da distribuição linux **UBUNTU**:
+Este projeto utilizou as seguintes ferramentas para implementar a infraestrutura solicitada. Além disso, todo o desenvolvimento foi realizado na plataforma **WSL (Windows Subsystem for Linux)**, utilizando a distribuição **Ubuntu** como ambiente base:
 
 Container com Docker: [Instalação Docker LINK](https://docs.docker.com/engine/install/)
 
@@ -26,42 +26,53 @@ Nodes com Kind: [Instalação Kind LINK](https://kind.sigs.k8s.io/docs/user/quic
 
 ---
 ## ETAPA 1
-Após instalar os pré-requisitos e clonar o repositório, construa a imagem Docker utilizando o Dockerfile fornecido no diretório clonado. Para isso, execute o seguinte comando:
-
+Após instalar os pré-requisitos, clonar o repositório e acessar o diretório do repositório clonado, você deverá construir a imagem Docker usando o Dockerfile fornecido no projeto. Para isso, execute o comando abaixo:
 ```bash
 docker build --pull --rm -f 'Dockerfile' -t 'jenkins_jolokia:1.0' '.'
 ```
-
-Este comando criará o container Tomcat, que conterá os arquivos .WAR do Jenkins e do Jolokia. Paralelamente, será configurado o coletor de métricas JMX (JMX Exporter), responsável por processar os dados disponibilizados pelo Jolokia e convertê-los em um formato compatível com o Prometheus, permitindo a posterior coleta e monitoramento dessas métricas pelo sistema de observabilidade.
+Este comando criará um container Tomcat que hospedará os arquivos .WAR do Jenkins e do Jolokia. Simultaneamente, será configurado o JMX Exporter para coletar métricas das aplicações JVM (Jenkins e Jolokia), convertendo os dados em formato compatível com o Prometheus. Essa integração permite o monitoramento contínuo das métricas através do sistema de observabilidade.
 
 ---
 
 ## ETAPA 2
-Após a build do container agora ele deve ser diponibilizado ao cluster kubernets e implantado na infraestrutura dos solicitada no projeto, para isso crie o cluster com a ferramenta Kind com o comando:
-
+Após construir a imagem do container, é necessário disponibilizá-la no cluster Kubernetes e implantá-la na infraestrutura conforme especificado no projeto. Para isso, primeiro crie um cluster local utilizando o Kind com o seguinte comando:
 ```bash
 kind create cluster --config config.yaml
 ```
-
-Esse comando criará o cluster com base no arquivo config.yaml que criará 4 nodes, sendo 1 deles o control-plane e os outros 3 workers que comportarão os pods, após isso a build docker criada anteriormente deve ser carregado no cluster com o comando:
-
+Este comando criará o cluster com base no arquivo config.yaml, configurando 4 nós: 1 control-plane e 3 workers que executarão os pods. Após a criação do cluster, a imagem Docker construída anteriormente deverá ser carregada no cluster utilizando o comando:
 ```bash
 kind load docker-image jenkins_jolokia:1.0 
 ```
 ---
 
 ## ETAPA 3
-Com a configuração do cluster e disponibilização do container Jenkins, tudo está configurado para o deploys do pods solicitados no projeto, para automação disponilizei um script todos os serviços no online.
-
+Com o cluster configurado e o container do Jenkins disponibilizado, todo o ambiente está pronto para o deploy dos pods solicitados no projeto. Para automatizar o processo, disponibilizei um script que inicializa todos os serviços na infraestrutura, basta executar:
 ```bash
 chmod +x scripts.sh
 ./scripts.sh
 ```
-
-Esse script executará o comando kubectl apply -f "arquivo.yaml" em todos os arquivos presentes no repositório, com exceção do config.yaml que não é necessário, com isso o projeto deve estar em execução e os serviços podem ser visualizados com os comandos:
-
+Este script executará o comando ```kubectl apply -f``` para todos os arquivos YAML do repositório, exceto o config.yaml (que não é necessário para esta etapa, utilizado apenas na criação do cluster). Após a execução, o projeto estará em operação e os serviços poderão ser visualizados utilizando os seguintes comandos:
 ```bash
 kubectl port-forward service/jenkins-service 8080 9400
 kubectl port-forward service/prometheus-service 9090
 kubectl port-forward service/grafana-service 3000
 ```
+Esses comandos tornarão os serviços acessíveis para a máquina host sendo possível acessa-los no navegador através dos endereços:
+
+https://localhost:8080/jenkins -> Página de configuração inicial do Jenkins
+
+- Observação: para adquirir o código de configuração inicial do Jenkins, deve ser realizado os seguintes comandos na infraestrutura para adquirir a chave:
+```bash
+kubectl exec -it deployment/jenkins-deployment -- /bin/sh
+cat /root/.jenkins/secrets/initialAdminPassword
+exit
+```
+Copie a chave exibida e cole na página de configuração do Jenkins.
+
+https://localhost:8080/jolokia -> Api JSON diponibilizada pelo Jolokia
+
+https://localhost:9400/metrics -> Endpoint do JMX Exporter que será consumida pelo Prometheus
+
+https://localhost:9090 -> Interface de monitoramento do **Prometheus**
+
+https://localhost:3000 -> Dashboard de visualização de métricas do **Grafana**
