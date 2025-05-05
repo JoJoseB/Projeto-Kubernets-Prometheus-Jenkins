@@ -1,3 +1,4 @@
+# Utilizando um deploy simples para o grafana configurando login admin e senha admin123
 apiVersion: apps/v1
 kind: Deployment
 metadata:

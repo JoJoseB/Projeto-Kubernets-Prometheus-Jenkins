@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Caminho base (diretório onde o script está)
+# Caminho base d odiretório onde o script está
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 echo "Buscando arquivos YAML em subdiretórios de: $BASE_DIR"

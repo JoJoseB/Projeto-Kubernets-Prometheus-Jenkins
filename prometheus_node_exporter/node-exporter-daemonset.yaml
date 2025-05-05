@@ -1,3 +1,4 @@
+#Configuração do daemon do node exporter para que em cada node ele consiga visualizar a raiz do host e expor os valores na porta 9100
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:

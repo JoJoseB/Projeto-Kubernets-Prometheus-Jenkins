@@ -1,3 +1,4 @@
+# Configurando o prometheus colocando os apontamentos dos endpoints que deve visualizar 
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -7,7 +8,7 @@ metadata:
 data:
   prometheus.yml: |
     global:
-      scrape_interval: 15s
+      scrape_interval: 5s
     scrape_configs:
     - job_name: 'jenkins-jmx'
       metrics_path: '/metrics'

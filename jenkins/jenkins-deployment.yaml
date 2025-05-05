@@ -1,3 +1,4 @@
+# Deploy do container com Jenkins expondo a porta 8080 para os caminhos /jenkins e /jolokia e 9400 para jxm exporter no caminho /metrics
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,7 +15,8 @@ spec:
     spec:
       containers:
       - name: jenkins
+      #utilizando a imagem criada
         image: jenkins_jolokia:1.0
         ports:
-        - containerPort: 8080
-        - containerPort: 9400
+        - containerPort: 8080 # /jenkins e /jolokia
+        - containerPort: 9400 # /metrics

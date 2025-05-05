@@ -1,12 +1,11 @@
+# Service para o Grafana apenas para exposição da porta http do container no node
 apiVersion: v1
 kind: Service
 metadata:
   name: grafana-service
 spec:
-  type: NodePort
   selector:
     app: grafana
   ports:
   - port: 3000
     targetPort: 3000
-    nodePort: 30000

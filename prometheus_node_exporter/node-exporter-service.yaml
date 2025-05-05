@@ -1,3 +1,4 @@
+# Service para expor a porta do node exporter ao cluster
 apiVersion: v1
 kind: Service
 metadata:
