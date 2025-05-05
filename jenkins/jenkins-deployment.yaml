@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: jenkins
-        image: jenkins_jolokia:teste
+        image: jenkins_jolokia:1.0
         ports:
         - containerPort: 8080
         - containerPort: 9400
