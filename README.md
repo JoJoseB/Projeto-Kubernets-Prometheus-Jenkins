@@ -1,4 +1,5 @@
 # PROJETO ESIG
+LINK PARA O VIDEO DA ATIVIDADE: [LINK DO VIDEO NO LOOM](https://www.loom.com/share/8b4dbe08f8ba47a4a77101f079e03689?sid=8dc03012-2907-4735-9e69-631998520773)
 
 Este repositório foi criado para a avaliação técnica do processo seletivo da vaga de Analista de Infraestrutura na **ESIG Software** e **Quark Tecnologia**. Sinta-se à vontade para cloná-lo e, se desejar, contribuir com melhorias.
 ```bash
@@ -75,4 +76,4 @@ https://localhost:9400/metrics -> Endpoint do JMX Exporter que será consumida p
 
 https://localhost:9090 -> Interface de monitoramento do **Prometheus**
 
-https://localhost:3000 -> Dashboard de visualização de métricas do **Grafana**
+https://localhost:3000 -> Dashboard de visualização de métricas do **Grafana** - Os usuário criado é o padrão User: admin Password: admin123
