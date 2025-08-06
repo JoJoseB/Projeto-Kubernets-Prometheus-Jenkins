@@ -1,4 +1,5 @@
-# PROJETO ESIG
+# PROJETO Kubernets-Prometheus-Jenkins
+
 Este repositório foi criado de praticar Kubernets com algumas ferramentas de observabilidade e CI/CD. Sinta-se à vontade para cloná-lo e, se desejar, contribuir com melhorias.
 ```bash
 git clone https://github.com/JoJoseB/projeto-esig.git
