@@ -9,7 +9,7 @@ cd projeto-esig
 ## Objetivos
 1. Criar um contêiner para uma aplicação simples e expor as métricas via 
 Jolokia
-2. Execute a atividade da Etapa 1 em um cluster kubernetes.
+2. Executar a atividade da Etapa 1 em um cluster kubernetes.
 3. Configurar o Prometheus para coletar métricas via Jolokia e do Node 
 Exporter.
 
