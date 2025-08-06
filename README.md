@@ -1,5 +1,5 @@
 # PROJETO ESIG
-[//]LINK PARA O VIDEO DA ATIVIDADE: [LINK DO VIDEO NO LOOM](https://www.loom.com/share/8b4dbe08f8ba47a4a77101f079e03689?sid=8dc03012-2907-4735-9e69-631998520773)
+[//]:LINK PARA O VIDEO DA ATIVIDADE: [LINK DO VIDEO NO LOOM](https://www.loom.com/share/8b4dbe08f8ba47a4a77101f079e03689?sid=8dc03012-2907-4735-9e69-631998520773)
 
 Este repositório foi criado para a avaliação técnica do processo seletivo da vaga de Analista de Infraestrutura na **ESIG Software** e **Quark Tecnologia**. Sinta-se à vontade para cloná-lo e, se desejar, contribuir com melhorias.
 ```bash
