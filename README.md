@@ -1,7 +1,5 @@
 # PROJETO ESIG
-[//]:LINK PARA O VIDEO DA ATIVIDADE: [LINK DO VIDEO NO LOOM](https://www.loom.com/share/8b4dbe08f8ba47a4a77101f079e03689?sid=8dc03012-2907-4735-9e69-631998520773)
-
-Este repositório foi criado para a avaliação técnica do processo seletivo da vaga de Analista de Infraestrutura na **ESIG Software** e **Quark Tecnologia**. Sinta-se à vontade para cloná-lo e, se desejar, contribuir com melhorias.
+Este repositório foi criado de praticar Kubernets com algumas ferramentas de observabilidade e CI/CD. Sinta-se à vontade para cloná-lo e, se desejar, contribuir com melhorias.
 ```bash
 git clone https://github.com/JoJoseB/projeto-esig.git
 cd projeto-esig
